@@ -1,0 +1,2 @@
+# InteligenciaArtificial_LinguagensFormais_Automatos
+Atividades práticas da disciplica.
