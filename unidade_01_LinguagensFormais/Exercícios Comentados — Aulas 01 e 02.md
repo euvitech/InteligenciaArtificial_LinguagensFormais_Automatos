@@ -1717,29 +1717,71 @@ Responda sem consultar o gabarito:
 ### 1.
 
 A palavra `b` pode ser gerada?
+Sim, pode ser gerada, S ⇒ b, b ∈ L(G)
 
 ### 2.
 
 A palavra `ab` pode ser gerada?
+Sim, só colocar um a: S ⇒ aS depois terminamos com aS ⇒ ab então fica: ab ∈ L(G)
 
 ### 3.
 
 A palavra `aab` pode ser gerada?
+Pode ser sim, se tiver dois a antes do b:
+S ⇒ aS
+aS ⇒ aaS
+aaS ⇒ aab
+
+aab ∈ L(G)
 
 ### 4.
 
 A palavra `aaab` pode ser gerada?
+Sim, é possível:
+S ⇒ aS
+⇒ aaS
+⇒ aaaS
+⇒ aaab
+
+aaab ∈ L(G)
 
 ### 5.
 
 A palavra `aba` pode ser gerada?
 
+Não pode ser gerado:
+
+S → b
+S ⇒ aS ⇒ ab
+aba ∉ L(G)
+
 ### 6.
 
 Escreva a derivação completa de `aaaab`.
 
+Começamos com:
+
+S
+
+Aplicamos 
+S → aS quatro vezes:
+
+S ⇒ aS
+⇒ aaS
+⇒ aaaS
+⇒ aaaaS
+
+Agora usamos 
+S → b: ⇒ aaaab
+
+Portanto, a derivação completa é:
+
+S ⇒ aS ⇒ aaS ⇒ aaaS ⇒ aaaaS ⇒ aaaab
+
 ### 7.
 
 Descreva, com suas palavras, o padrão das palavras geradas por essa gramática.
+
+Todas as palavras são formadas por uma ou várias letras a seguidas de uma única letra b. Ou seja, podemos ter qualquer quantidade de a, inclusive nenhuma, mas sempre teremos um único b no final. Por isso, palavras como aba, abb ou baa não podem ser geradas por essa gramática.
 
 > **Dica:** observe o que acontece quando aplicamos várias vezes $S\rightarrow aS$ e, finalmente, utilizamos $S\rightarrow b$.
