@@ -1,9 +1,18 @@
+# Atividades Resolvidas — Linguagens Formais e Autômatos
+
+Material de estudo com resoluções comentadas sobre alfabetos, palavras, linguagens, gramáticas e derivações.
+
+> **Objetivo:** apresentar as respostas de forma simples, direta e adequada para consulta no GitHub.
+
+---
+
 ## 📝 Atividade 1 — Prefixos e Sufixos
 
 Considere a palavra:
 
-```text
+```
 ab
+
 ```
 
 ### Pergunta
@@ -26,8 +35,9 @@ Sufixo é uma parte que termina no final da palavra.
 
 Considere:
 
-```text
+```
 G = ({S}, {a}, {S → aS | ε}, S)
+
 ```
 
 ### Pergunta
@@ -43,12 +53,12 @@ também pode gerar: aaa, aaaa, aaaaa, ...
 
 # Resolução dos Exercícios — Aulas 01 e 02
 
-1. Alfabeto
-Considere:
+1. Alfabeto Considere:
 
 Σ = {a, b, c}
 
 Perguntas
+
 1. Quantos símbolos existem no alfabeto?
 
 Existem 3 símbolos.
@@ -101,8 +111,7 @@ Exemplo de palavra: abc
 
 Ideia principal: para uma palavra ser válida sobre um alfabeto, todos os seus símbolos precisam pertencer ao alfabeto.
 
-2. Palavras sobre um alfabeto
-Considere:
+2. Palavras sobre um alfabeto Considere:
 
 Σ = {0, 1}
 
@@ -150,29 +159,25 @@ E:
 
 é inválida porque contém a.
 
-3. Pertinência de símbolos e palavras
-Considere:
+3. Pertinência de símbolos e palavras Considere:
 
 Σ = {0, 1}
 
 Determine se as afirmações são verdadeiras ou falsas.
 
-1. 0 ∈ Σ
-Verdadeiro.
+1. 0 ∈ Σ Verdadeiro.
 
 O símbolo 0 está no alfabeto.
 
 0 ∈ Σ
 
-2. 1 ∈ Σ
-Verdadeiro.
+2. 1 ∈ Σ Verdadeiro.
 
 O símbolo 1 também pertence ao alfabeto.
 
 1 ∈ Σ
 
-3. 01 ∈ Σ
-Falso.
+3. 01 ∈ Σ Falso.
 
 Aqui está uma diferença muito importante.
 
@@ -182,17 +187,15 @@ Portanto, 01 é uma palavra, não um símbolo individual.
 
 01 ∉ Σ
 
-4. 01 ∈ Σ*
-Verdadeiro.
+4. 01 ∈ Σ\* Verdadeiro.
 
-Σ* contém todas as palavras possíveis formadas com 0 e 1.
+Σ\* contém todas as palavras possíveis formadas com 0 e 1.
 
 Como 01 é formada somente por esses símbolos:
 
-01 ∈ Σ*
+01 ∈ Σ\*
 
-5. 2 ∈ Σ
-Falso.
+5. 2 ∈ Σ Falso.
 
 O alfabeto é:
 
@@ -202,8 +205,7 @@ O símbolo 2 não está nele.
 
 2 ∉ Σ
 
-6. 101 ∈ Σ*
-Verdadeiro.
+6. 101 ∈ Σ\* Verdadeiro.
 
 A palavra 101 contém somente símbolos permitidos:
 
@@ -211,20 +213,19 @@ A palavra 101 contém somente símbolos permitidos:
 
 Portanto:
 
-101 ∈ Σ*
+101 ∈ Σ\*
 
 Resumo
 0 ∈ Σ       → Verdadeiro
 1 ∈ Σ       → Verdadeiro
 01 ∈ Σ      → Falso
-01 ∈ Σ*     → Verdadeiro
+01 ∈ Σ\*     → Verdadeiro
 2 ∈ Σ       → Falso
-101 ∈ Σ*    → Verdadeiro
+101 ∈ Σ\*    → Verdadeiro
 
-Dica importante: Σ representa os símbolos do alfabeto. Já Σ* representa as palavras que podemos construir com esses símbolos.
+Dica importante: Σ representa os símbolos do alfabeto. Já Σ\* representa as palavras que podemos construir com esses símbolos.
 
-4. Linguagem
-Considere:
+4. Linguagem Considere:
 
 L = {0, 01, 011, 0111}
 
@@ -267,13 +268,11 @@ Resposta final
 111  ∉ L
 011  ∈ L
 
-5. Descrevendo uma linguagem por padrão
-Considere:
+5. Descrevendo uma linguagem por padrão Considere:
 
 L = {bⁿ | n ≥ 1}
 
-1. Escreva as cinco primeiras palavras
-Precisamos ter pelo menos um b.
+1. Escreva as cinco primeiras palavras Precisamos ter pelo menos um b.
 
 Assim:
 
@@ -283,8 +282,7 @@ bbb
 bbbb
 bbbbb
 
-2. Explique o significado de bⁿ
-O n representa quantas vezes o símbolo b aparece.
+2. Explique o significado de bⁿ O n representa quantas vezes o símbolo b aparece.
 
 Por exemplo:
 
@@ -303,8 +301,7 @@ n ≥ 1
 
 precisamos ter pelo menos um b.
 
-3. A palavra bbbbbb pertence à linguagem?
-Sim.
+3. A palavra bbbbbb pertence à linguagem? Sim.
 
 Ela possui seis símbolos b:
 
@@ -318,8 +315,7 @@ então:
 
 bbbbbb ∈ L
 
-4. A palavra vazia ε pertence à linguagem?
-Não.
+4. A palavra vazia ε pertence à linguagem? Não.
 
 A palavra vazia possui zero símbolos:
 
@@ -350,8 +346,7 @@ bbbbbb ∈ L
 
 Dica: quando aparecer algo como aⁿ | n ≥ 1, pense: "uma quantidade de a, começando com pelo menos um".
 
-6. Linguagem vazia e palavra vazia
-Precisamos diferenciar:
+6. Linguagem vazia e palavra vazia Precisamos diferenciar:
 
 ∅
 
@@ -417,8 +412,7 @@ Por isso:
 
 ∅ ≠ {ε}
 
-7. Estrutura de uma gramática
-Considere:
+7. Estrutura de uma gramática Considere:
 
 G = (S, A, 0, 1, P, S)
 
@@ -426,32 +420,27 @@ com:
 
 P = {S → 0A, A → 1}
 
-1. Conjunto de variáveis
-As variáveis, ou não terminais, são:
+1. Conjunto de variáveis As variáveis, ou não terminais, são:
 
 V = {S, A}
 
-2. Conjunto de terminais
-Os terminais são:
+2. Conjunto de terminais Os terminais são:
 
 T = {0, 1}
 
 São os símbolos que aparecerão na palavra final.
 
-3. Conjunto de produções
-As regras são:
+3. Conjunto de produções As regras são:
 
 P = {S → 0A, A → 1}
 
-4. Símbolo inicial
-O símbolo inicial é:
+4. Símbolo inicial O símbolo inicial é:
 
 S
 
 É por ele que começamos a derivação.
 
-5. Qual palavra pode ser gerada?
-Começamos com:
+5. Qual palavra pode ser gerada? Começamos com:
 
 S
 
@@ -486,8 +475,7 @@ Produções:     P = {S → 0A, A → 1}
 Inicial:       S
 Palavra:       01
 
-8. Como ler e aplicar uma produção
-Considere:
+8. Como ler e aplicar uma produção Considere:
 
 S → 0S
 
@@ -521,13 +509,12 @@ Porque ainda temos o símbolo S, que é um não terminal:
 
 Uma derivação termina quando não existem mais não terminais na palavra.
 
-9. Derivação completa de uma palavra
-Considere:
+9. Derivação completa de uma palavra Considere:
 
 G:
 {
-    S → aS
-    S → b
+S → aS
+S → b
 }
 
 Queremos gerar:
@@ -581,23 +568,23 @@ Portanto:
 
 aaab ∈ L(G)
 
-Como pensar: cada vez que usamos S → aS, acrescentamos um a. Quando já temos a quantidade desejada de a, usamos S → b para finalizar.
+Como pensar: cada vez que usamos S → aS, acrescentamos um 
+a. Quando já temos a quantidade desejada de a, usamos S → b para 
+finalizar.
 
-10. Identificando palavras geradas por uma gramática
-Considere:
+10. Identificando palavras geradas por uma gramática Considere:
 
 G:
 {
-    S → 0S
-    S → 1
+S → 0S
+S → 1
 }
 
 A gramática produz vários 0 e, no final, um único 1.
 
 Vamos analisar cada palavra.
 
-1. 1
-Sim.
+1. 1 Sim.
 
 Basta usar:
 
@@ -607,8 +594,7 @@ Portanto:
 
 1 ∈ L(G)
 
-2. 01
-Sim.
+2. 01 Sim.
 
 S ⇒ 0S ⇒ 01
 
@@ -616,8 +602,7 @@ Portanto:
 
 01 ∈ L(G)
 
-3. 001
-Sim.
+3. 001 Sim.
 
 S ⇒ 0S ⇒ 00S ⇒ 001
 
@@ -625,20 +610,18 @@ Portanto:
 
 001 ∈ L(G)
 
-4. 0001
-Sim.
+4. 0001 Sim.
 
 S ⇒ 0S
-  ⇒ 00S
-  ⇒ 000S
-  ⇒ 0001
+⇒ 00S
+⇒ 000S
+⇒ 0001
 
 Portanto:
 
 0001 ∈ L(G)
 
-5. 101
-Não.
+5. 101 Não.
 
 Podemos produzir:
 
@@ -656,8 +639,7 @@ Portanto:
 
 101 ∉ L(G)
 
-6. 1001
-Também não.
+6. 1001 Também não.
 
 A palavra começa com 1, mas depois possui outros símbolos.
 
@@ -689,19 +671,17 @@ Ou seja:
 
 zero ou mais 0, seguidos de exatamente um 1 no final.
 
-11. Desafio Final
-Considere:
+11. Desafio Final Considere:
 
 G:
 {
-    S → aS
-    S → b
+S → aS
+S → b
 }
 
 Vamos resolver cada questão.
 
-1. A palavra b pode ser gerada?
-Sim.
+1. A palavra b pode ser gerada? Sim.
 
 Usamos diretamente:
 
@@ -711,8 +691,7 @@ Portanto:
 
 b ∈ L(G)
 
-2. A palavra ab pode ser gerada?
-Sim.
+2. A palavra ab pode ser gerada? Sim.
 
 Primeiro colocamos um a:
 
@@ -730,35 +709,32 @@ Portanto:
 
 ab ∈ L(G)
 
-3. A palavra aab pode ser gerada?
-Sim.
+3. A palavra aab pode ser gerada? Sim.
 
 Precisamos colocar dois a antes do b:
 
 S ⇒ aS
-  ⇒ aaS
-  ⇒ aab
+⇒ aaS
+⇒ aab
 
 Portanto:
 
 aab ∈ L(G)
 
-4. A palavra aaab pode ser gerada?
-Sim.
+4. A palavra aaab pode ser gerada? Sim.
 
 Precisamos colocar três a:
 
 S ⇒ aS
-  ⇒ aaS
-  ⇒ aaaS
-  ⇒ aaab
+⇒ aaS
+⇒ aaaS
+⇒ aaab
 
 Portanto:
 
 aaab ∈ L(G)
 
-5. A palavra aba pode ser gerada?
-Não.
+5. A palavra aba pode ser gerada? Não.
 
 A gramática permite colocar vários a, mas o b precisa ser o último símbolo.
 
@@ -780,8 +756,7 @@ Portanto:
 
 aba ∉ L(G)
 
-6. Derivação completa de aaaab
-Precisamos de quatro a antes do b.
+6. Derivação completa de aaaab Precisamos de quatro a antes do b.
 
 Começamos:
 
@@ -810,8 +785,7 @@ Portanto:
 
 aaaab ∈ L(G)
 
-7. Qual é o padrão das palavras geradas?
-A gramática possui duas possibilidades:
+7. Qual é o padrão das palavras geradas? A gramática possui duas possibilidades:
 
 S → aS
 
@@ -857,6 +831,7 @@ baa     → inválida
 aaba    → inválida
 
 Resposta do desafio
+
 1. b       → Sim
 2. ab      → Sim
 3. aab     → Sim
@@ -872,7 +847,7 @@ Os conceitos mais importantes deste material são:
 
 Representa o alfabeto, ou seja, o conjunto de símbolos disponíveis.
 
-Σ*
+Σ\*
 
 Representa todas as palavras finitas que podem ser construídas usando os símbolos de Σ, incluindo ε.
 
@@ -921,6 +896,290 @@ S ⇒ aS
 
 representa que aplicamos uma regra de produção durante uma derivação.
 
+---
+
+# Exercícios Práticos para Fixação
+
+## Bloco 1 — Derivação
+
+Considere a gramática:
+
+```text
+G₁:
+S → aS | b
+```
+
+### A) Gere a palavra `aaab`
+
+Queremos formar três símbolos `a` e terminar com `b`.
+
+Começamos pelo símbolo inicial:
+
+```text
+S
+```
+
+Aplicamos a regra `S → aS` três vezes:
+
+```text
+S ⇒ aS
+  ⇒ aaS
+  ⇒ aaaS
+```
+
+Agora usamos a regra `S → b`:
+
+```text
+aaaS ⇒ aaab
+```
+
+Portanto, a derivação completa é:
+
+```text
+S ⇒ aS ⇒ aaS ⇒ aaaS ⇒ aaab
+```
+
+Logo:
+
+```text
+aaab ∈ L(G₁)
+```
+
+### B) Como sabemos que a derivação terminou?
+
+A derivação termina quando não existe mais nenhum símbolo **não terminal** na palavra.
+
+Na expressão:
+
+```text
+aaaS
+```
+
+ainda existe o não terminal `S`, então a derivação não terminou.
+
+Depois da aplicação:
+
+```text
+aaaS ⇒ aaab
+```
+
+restam somente os símbolos terminais `a` e `b`.
+
+Por isso, a derivação terminou.
+
+---
+
+## Bloco 2 — Gramática Livre de Contexto
+
+Considere:
+
+```text
+G₂:
+S → aSb | ε
+```
+
+A regra `S → aSb` coloca um `a` no início e um `b` no final.
+
+A regra `S → ε` encerra a derivação.
+
+### A) Gere a palavra `aaabbb`
+
+Aplicamos `S → aSb` três vezes:
+
+```text
+S
+⇒ aSb
+⇒ aaSbb
+⇒ aaaSbbb
+```
+
+Agora encerramos com:
+
+```text
+S → ε
+```
+
+Assim:
+
+```text
+aaaSbbb ⇒ aaaεbbb
+```
+
+Como `ε` representa a palavra vazia:
+
+```text
+aaaεbbb = aaabbb
+```
+
+Portanto:
+
+```text
+S ⇒ aSb ⇒ aaSbb ⇒ aaaSbbb ⇒ aaabbb
+```
+
+Logo:
+
+```text
+aaabbb ∈ L(G₂)
+```
+
+### B) É possível gerar `aabbb`?
+
+**Não.**
+
+Observe o comportamento da regra:
+
+```text
+S → aSb
+```
+
+Toda vez que ela é aplicada, adicionamos:
+
+- um `a`;
+- um `b`.
+
+Isso significa que sempre teremos a mesma quantidade de `a` e `b`.
+
+As palavras geradas possuem o formato:
+
+```text
+aⁿbⁿ, com n ≥ 0
+```
+
+Exemplos:
+
+```text
+ε
+ab
+aabb
+aaabbb
+aaaabbbb
+...
+```
+
+A palavra:
+
+```text
+aabbb
+```
+
+possui:
+
+```text
+2 símbolos a
+3 símbolos b
+```
+
+Como as quantidades são diferentes:
+
+```text
+aabbb ∉ L(G₂)
+```
+
+Portanto, **não é possível gerar `aabbb` com essa gramática**.
+
+---
+
+## Bloco 3 — Classificação da Gramática
+
+Considere:
+
+```text
+S → aA
+A → b
+```
+
+Devemos classificar a gramática como **Regular** ou **Livre de Contexto**.
+
+As produções são:
+
+```text
+S → aA
+A → b
+```
+
+Uma gramática regular à direita pode possuir regras do tipo:
+
+```text
+A → aB
+```
+
+ou:
+
+```text
+A → a
+```
+
+As duas regras apresentadas seguem exatamente esse formato:
+
+```text
+S → aA
+A → b
+```
+
+Portanto, a gramática é:
+
+```text
+REGULAR
+```
+
+Como toda gramática regular também é uma gramática livre de contexto, ela poderia ser considerada livre de contexto em um sentido mais amplo. Porém, quando a questão pede a classificação mais específica, a resposta correta é:
+
+> **Gramática Regular.**
+
+A única palavra gerada por essa gramática é:
+
+```text
+S ⇒ aA ⇒ ab
+```
+
+Logo:
+
+```text
+L(G) = {ab}
+```
+
+---
+
+## Resumo dos três blocos
+
+| Bloco | Resultado |
+|---|---|
+| 1 | `S ⇒ aS ⇒ aaS ⇒ aaaS ⇒ aaab` |
+| 1 — término | A derivação termina quando restam apenas terminais |
+| 2 | `S ⇒ aSb ⇒ aaSbb ⇒ aaaSbbb ⇒ aaabbb` |
+| 2 — `aabbb` | Não pode ser gerada |
+| 2 — padrão | `L(G₂) = {aⁿbⁿ | n ≥ 0}` |
+| 3 | Gramática **Regular** |
+| 3 — palavra gerada | `ab` |
+
+## Dica para memorizar
+
+Quando você estiver analisando uma gramática, observe principalmente **onde o não terminal aparece**.
+
+Por exemplo:
+
+```text
+S → aS
+```
+
+permite continuar acrescentando símbolos.
+
+Já:
+
+```text
+S → b
+```
+
+elimina o não terminal e encerra a derivação.
+
+Em uma regra como:
+
+```text
+S → aSb
+```
+
+o não terminal fica no meio da palavra. Esse tipo de estrutura permite criar dependências entre partes da palavra, como a mesma quantidade de `a` e `b`. 
 # Exercícios Práticos para Fixação
 
 **Disciplina:** Linguagens Formais e Autômatos  
