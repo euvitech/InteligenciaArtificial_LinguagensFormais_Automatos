@@ -920,3 +920,172 @@ Já:
 S ⇒ aS
 
 representa que aplicamos uma regra de produção durante uma derivação.
+
+# Exercícios Práticos para Fixação
+
+**Disciplina:** Linguagens Formais e Autômatos  
+**Curso:** Inteligência Artificial
+
+---
+
+## Bloco 1 — Derivação
+
+Dada a gramática:
+
+```text
+G₁: S → aS | b
+```
+
+### A) Gere a palavra `aaab`
+
+Começamos pelo símbolo inicial `S` e aplicamos as regras da gramática:
+
+```text
+S ⇒ aS
+  ⇒ aaS
+  ⇒ aaaS
+  ⇒ aaab
+```
+
+Portanto, a palavra `aaab` pode ser gerada pela gramática.
+
+### B) Como saber que a derivação terminou?
+
+A derivação termina quando não existe mais nenhuma variável, ou símbolo não terminal, na palavra.
+
+No caso:
+
+```text
+aaab
+```
+
+A palavra possui apenas símbolos terminais (`a` e `b`). Como não existe mais o símbolo `S`, nenhuma outra regra precisa ser aplicada.
+
+---
+
+## Bloco 2 — Gramática Livre de Contexto (GLC)
+
+Dada a gramática:
+
+```text
+G₂: S → aSb | ε
+```
+
+Onde `ε` representa a palavra vazia.
+
+### A) Gere a palavra `aaabbb`
+
+Aplicando as regras:
+
+```text
+S ⇒ aSb
+  ⇒ aaSbb
+  ⇒ aaaSbbb
+  ⇒ aaaεbbb
+  ⇒ aaabbb
+```
+
+Portanto, a palavra `aaabbb` pode ser gerada pela gramática.
+
+### B) É possível gerar `aabbb`? Justifique.
+
+**Não.**
+
+A regra:
+
+```text
+S → aSb
+```
+
+sempre adiciona um `a` no início e um `b` no final ao mesmo tempo.
+
+Por isso, essa gramática gera palavras com a mesma quantidade de `a` e `b`, seguindo o padrão:
+
+```text
+ε
+ab
+aabb
+aaabbb
+aaaabbbb
+...
+```
+
+De forma geral, a linguagem gerada é:
+
+```text
+L(G₂) = { aⁿbⁿ | n ≥ 0 }
+```
+
+A palavra `aabbb` possui:
+
+- 2 símbolos `a`;
+- 3 símbolos `b`.
+
+Como as quantidades são diferentes, `aabbb` **não pertence à linguagem gerada pela gramática**.
+
+---
+
+## Bloco 3 — Classificação da Gramática
+
+Considere a gramática:
+
+```text
+S → aA
+A → b
+```
+
+### Classificação
+
+Essa gramática é **Regular**.
+
+### Justificativa
+
+Uma gramática regular pode possuir regras no formato:
+
+```text
+A → aB
+```
+
+ou
+
+```text
+A → a
+```
+
+Na gramática apresentada:
+
+```text
+S → aA
+A → b
+```
+
+as duas regras seguem esse formato.
+
+A derivação possível é:
+
+```text
+S ⇒ aA ⇒ ab
+```
+
+Portanto, a linguagem gerada é:
+
+```text
+L = { ab }
+```
+
+Logo, a classificação mais adequada é **Gramática Regular**.
+
+> Observação: toda gramática regular também pode ser vista como uma gramática livre de contexto, mas, quando existe uma classificação mais específica, classificamos esta gramática como **Regular**.
+
+---
+
+## Resumo das respostas
+
+| Bloco | Resposta |
+|---|---|
+| 1A | `S ⇒ aS ⇒ aaS ⇒ aaaS ⇒ aaab` |
+| 1B | Termina quando restam apenas símbolos terminais. |
+| 2A | `S ⇒ aSb ⇒ aaSbb ⇒ aaaSbbb ⇒ aaabbb` |
+| 2B | Não. A gramática gera apenas palavras com a mesma quantidade de `a` e `b`. |
+| 3 | A gramática é **Regular**. |
+
