@@ -1179,6 +1179,289 @@ Em uma regra como:
 S → aSb
 ```
 
+o não terminal fica no meio da palavra. Esse tipo de estrutura permite criar dependências entre partes da palavra, como a mesma quantidade de `a` e `b`.
+
+# Exercícios Práticos para Fixação
+
+## Bloco 1 — Derivação
+
+Considere a gramática:
+
+```text
+G₁:
+S → aS | b
+```
+
+### A) Gere a palavra `aaab`
+
+Queremos formar três símbolos `a` e terminar com `b`.
+
+Começamos pelo símbolo inicial:
+
+```text
+S
+```
+
+Aplicamos a regra `S → aS` três vezes:
+
+```text
+S ⇒ aS
+  ⇒ aaS
+  ⇒ aaaS
+```
+
+Agora usamos a regra `S → b`:
+
+```text
+aaaS ⇒ aaab
+```
+
+Portanto, a derivação completa é:
+
+```text
+S ⇒ aS ⇒ aaS ⇒ aaaS ⇒ aaab
+```
+
+Logo:
+
+```text
+aaab ∈ L(G₁)
+```
+
+### B) Como sabemos que a derivação terminou?
+
+A derivação termina quando não existe mais nenhum símbolo **não terminal** na palavra.
+
+Na expressão:
+
+```text
+aaaS
+```
+
+ainda existe o não terminal `S`, então a derivação não terminou.
+
+Depois da aplicação:
+
+```text
+aaaS ⇒ aaab
+```
+
+restam somente os símbolos terminais `a` e `b`.
+
+Por isso, a derivação terminou.
+
+---
+
+## Bloco 2 — Gramática Livre de Contexto
+
+Considere:
+
+```text
+G₂:
+S → aSb | ε
+```
+
+A regra `S → aSb` coloca um `a` no início e um `b` no final.
+
+A regra `S → ε` encerra a derivação.
+
+### A) Gere a palavra `aaabbb`
+
+Aplicamos `S → aSb` três vezes:
+
+```text
+S
+⇒ aSb
+⇒ aaSbb
+⇒ aaaSbbb
+```
+
+Agora encerramos com:
+
+```text
+S → ε
+```
+
+Assim:
+
+```text
+aaaSbbb ⇒ aaaεbbb
+```
+
+Como `ε` representa a palavra vazia:
+
+```text
+aaaεbbb = aaabbb
+```
+
+Portanto:
+
+```text
+S ⇒ aSb ⇒ aaSbb ⇒ aaaSbbb ⇒ aaabbb
+```
+
+Logo:
+
+```text
+aaabbb ∈ L(G₂)
+```
+
+### B) É possível gerar `aabbb`?
+
+**Não.**
+
+Observe o comportamento da regra:
+
+```text
+S → aSb
+```
+
+Toda vez que ela é aplicada, adicionamos:
+
+- um `a`;
+- um `b`.
+
+Isso significa que sempre teremos a mesma quantidade de `a` e `b`.
+
+As palavras geradas possuem o formato:
+
+```text
+aⁿbⁿ, com n ≥ 0
+```
+
+Exemplos:
+
+```text
+ε
+ab
+aabb
+aaabbb
+aaaabbbb
+...
+```
+
+A palavra:
+
+```text
+aabbb
+```
+
+possui:
+
+```text
+2 símbolos a
+3 símbolos b
+```
+
+Como as quantidades são diferentes:
+
+```text
+aabbb ∉ L(G₂)
+```
+
+Portanto, **não é possível gerar `aabbb` com essa gramática**.
+
+---
+
+## Bloco 3 — Classificação da Gramática
+
+Considere:
+
+```text
+S → aA
+A → b
+```
+
+Devemos classificar a gramática como **Regular** ou **Livre de Contexto**.
+
+As produções são:
+
+```text
+S → aA
+A → b
+```
+
+Uma gramática regular à direita pode possuir regras do tipo:
+
+```text
+A → aB
+```
+
+ou:
+
+```text
+A → a
+```
+
+As duas regras apresentadas seguem exatamente esse formato:
+
+```text
+S → aA
+A → b
+```
+
+Portanto, a gramática é:
+
+```text
+REGULAR
+```
+
+Como toda gramática regular também é uma gramática livre de contexto, ela poderia ser considerada livre de contexto em um sentido mais amplo. Porém, quando a questão pede a classificação mais específica, a resposta correta é:
+
+> **Gramática Regular.**
+
+A única palavra gerada por essa gramática é:
+
+```text
+S ⇒ aA ⇒ ab
+```
+
+Logo:
+
+```text
+L(G) = {ab}
+```
+
+---
+
+## Resumo dos três blocos
+
+| Bloco | Resultado |
+|---|---|
+| 1 | `S ⇒ aS ⇒ aaS ⇒ aaaS ⇒ aaab` |
+| 1 — término | A derivação termina quando restam apenas terminais |
+| 2 | `S ⇒ aSb ⇒ aaSbb ⇒ aaaSbbb ⇒ aaabbb` |
+| 2 — `aabbb` | Não pode ser gerada |
+| 2 — padrão | `L(G₂) = {aⁿbⁿ | n ≥ 0}` |
+| 3 | Gramática **Regular** |
+| 3 — palavra gerada | `ab` |
+
+## Dica para memorizar
+
+Quando você estiver analisando uma gramática, observe principalmente **onde o não terminal aparece**.
+
+Por exemplo:
+
+```text
+S → aS
+```
+
+permite continuar acrescentando símbolos.
+
+Já:
+
+```text
+S → b
+```
+
+elimina o não terminal e encerra a derivação.
+
+Em uma regra como:
+
+```text
+S → aSb
+```
+
 o não terminal fica no meio da palavra. Esse tipo de estrutura permite criar dependências entre partes da palavra, como a mesma quantidade de `a` e `b`. 
 # Exercícios Práticos para Fixação
 
