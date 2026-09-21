@@ -1,0 +1,410 @@
+# Atividade Prática — Expressões Regulares
+
+## 1. Objetivo
+
+O objetivo do programa é utilizar uma expressão regular, ou **Regex**, para verificar se um endereço de e-mail possui um formato válido.
+
+O programa deve:
+
+1. solicitar cinco endereços de e-mail;
+2. validar cada endereço utilizando uma Regex;
+3. armazenar separadamente os e-mails válidos e inválidos;
+4. apresentar os dois grupos ao final;
+5. informar o motivo pelo qual cada endereço inválido foi rejeitado.
+
+Além disso, foi implementado o desafio proposto, impedindo:
+
+- ponto no início do usuário;
+- ponto imediatamente antes de `@`;
+- dois pontos consecutivos;
+- hífen no início ou no final de uma parte do domínio.
+
+---
+
+## 2. Expressão regular utilizada
+
+A expressão regular utilizada foi:
+
+```regex
+^(?!\.)(?!.*\.\.)(?!.*\.@)[A-Za-z0-9_+-]+(?:\.[A-Za-z0-9_+-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$
+```
+
+### Explicação
+
+A Regex pode ser dividida nas seguintes partes:
+
+```text
+^
+```
+
+Indica o início da cadeia.
+
+```text
+(?!\.)
+```
+
+Impede que o nome do usuário comece com ponto.
+
+```text
+(?!.*\.\.)
+```
+
+Impede dois pontos consecutivos.
+
+```text
+(?!.*\.@)
+```
+
+Impede um ponto imediatamente antes do símbolo `@`.
+
+```text
+[A-Za-z0-9_+-]+
+```
+
+Aceita uma ou mais letras, números, `_`, `+` e `-` no nome do usuário.
+
+```text
+(?:\.[A-Za-z0-9_+-]+)*
+```
+
+Permite pontos no usuário, desde que exista algum conteúdo depois de cada ponto.
+
+Assim, um endereço como:
+
+```text
+joao.silva@gmail.com
+```
+
+é aceito, mas:
+
+```text
+joao..silva@gmail.com
+```
+
+é rejeitado.
+
+O símbolo:
+
+```text
+@
+```
+
+separa o usuário do domínio.
+
+A parte:
+
+```text
+(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+
+```
+
+representa as partes do domínio.
+
+Cada parte deve começar e terminar com uma letra ou número.
+
+Dessa forma, são rejeitados:
+
+```text
+usuario@-dominio.com
+usuario@dominio-.com
+```
+
+Por fim:
+
+```text
+[A-Za-z]{2,}
+```
+
+representa a extensão final, que deve possuir pelo menos duas letras, como:
+
+```text
+com
+br
+edu
+info
+```
+
+E:
+
+```text
+$
+```
+
+indica o final da cadeia.
+
+---
+
+## 3. Implementação em Python
+
+```python
+import re
+
+# Regex utilizada para validação dos e-mails
+padrao_email = (
+    r"^(?!\.)(?!.*\.\.)(?!.*\.@)"
+    r"[A-Za-z0-9_+-]+(?:\.[A-Za-z0-9_+-]+)*"
+    r"@"
+    r"(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+"
+    r"[A-Za-z]{2,}$"
+)
+
+
+def motivo_invalido(email):
+
+    # Verifica a quantidade do símbolo @
+    if email.count("@") == 0:
+        return "Não possui o símbolo @."
+
+    if email.count("@") > 1:
+        return "Possui mais de um símbolo @."
+
+    usuario, dominio = email.split("@")
+
+    # Verificações do usuário
+    if usuario == "":
+        return "Não possui nome de usuário antes do @."
+
+    if usuario.startswith("."):
+        return "O usuário não pode começar com ponto."
+
+    if usuario.endswith("."):
+        return "O usuário não pode terminar com ponto."
+
+    if ".." in usuario:
+        return "O usuário não pode possuir dois pontos consecutivos."
+
+    if not re.fullmatch(r"[A-Za-z0-9._+-]+", usuario):
+        return "O usuário possui caracteres não permitidos."
+
+    # Verificações do domínio
+    if dominio == "":
+        return "Não possui domínio depois do @."
+
+    if "." not in dominio:
+        return "O domínio não possui uma extensão."
+
+    partes_dominio = dominio.split(".")
+
+    # Verifica se existem partes vazias
+    if "" in partes_dominio:
+        return "O domínio possui uma parte vazia."
+
+    # Verifica as partes do domínio
+    for parte in partes_dominio[:-1]:
+
+        if parte.startswith("-"):
+            return "Uma parte do domínio começa com hífen."
+
+        if parte.endswith("-"):
+            return "Uma parte do domínio termina com hífen."
+
+        if not re.fullmatch(r"[A-Za-z0-9-]+", parte):
+            return "O domínio possui caracteres não permitidos."
+
+    # Verifica a extensão
+    extensao = partes_dominio[-1]
+
+    if len(extensao) < 2:
+        return "A extensão deve possuir pelo menos duas letras."
+
+    if not extensao.isalpha():
+        return "A extensão deve possuir somente letras."
+
+    return "O endereço não corresponde ao formato esperado."
+
+
+emails_validos = []
+emails_invalidos = []
+
+print("VALIDADOR DE E-MAILS")
+print("--------------------")
+
+# Solicitação de cinco e-mails
+for i in range(5):
+
+    email = input(f"Digite o {i + 1}º endereço de e-mail: ").strip()
+
+    if re.fullmatch(padrao_email, email):
+        emails_validos.append(email)
+
+    else:
+        motivo = motivo_invalido(email)
+        emails_invalidos.append((email, motivo))
+
+
+# Resultado
+print("\nE-MAILS VÁLIDOS")
+print("----------------")
+
+if emails_validos:
+
+    for email in emails_validos:
+        print(email)
+
+else:
+    print("Nenhum e-mail válido.")
+
+
+print("\nE-MAILS INVÁLIDOS")
+print("------------------")
+
+if emails_invalidos:
+
+    for email, motivo in emails_invalidos:
+        print(f"{email} -> {motivo}")
+
+else:
+    print("Nenhum e-mail inválido.")
+```
+
+---
+
+## 4. Teste com os casos solicitados
+
+Foram utilizados os seguintes endereços:
+
+```text
+maria@gmail.com
+joao.silva@udf.edu.br
+estudante_01@faculdade.com
+pedro.gmail.com
+ana@dominio
+```
+
+Os resultados são:
+
+| Endereço | Resultado | Motivo |
+|---|---|---|
+| `maria@gmail.com` | Válido | Possui usuário, `@`, domínio e extensão |
+| `joao.silva@udf.edu.br` | Válido | O usuário pode possuir ponto e o domínio pode possuir várias partes |
+| `estudante_01@faculdade.com` | Válido | O usuário pode possuir `_` e números |
+| `pedro.gmail.com` | Inválido | Não possui o símbolo `@` |
+| `ana@dominio` | Inválido | O domínio não possui extensão |
+
+A saída esperada do programa para esses dados é semelhante a:
+
+```text
+VALIDADOR DE E-MAILS
+--------------------
+Digite o 1º endereço de e-mail: maria@gmail.com
+Digite o 2º endereço de e-mail: joao.silva@udf.edu.br
+Digite o 3º endereço de e-mail: estudante_01@faculdade.com
+Digite o 4º endereço de e-mail: pedro.gmail.com
+Digite o 5º endereço de e-mail: ana@dominio
+
+E-MAILS VÁLIDOS
+----------------
+maria@gmail.com
+joao.silva@udf.edu.br
+estudante_01@faculdade.com
+
+E-MAILS INVÁLIDOS
+------------------
+pedro.gmail.com -> Não possui o símbolo @.
+ana@dominio -> O domínio não possui uma extensão.
+```
+
+---
+
+## 5. Testes referentes ao desafio
+
+Para verificar as melhorias da Regex, podem ser utilizados os seguintes exemplos:
+
+| Entrada | Resultado | Justificativa |
+|---|---|---|
+| `.maria@gmail.com` | Inválido | Ponto no início do usuário |
+| `maria.@gmail.com` | Inválido | Ponto imediatamente antes de `@` |
+| `maria..silva@gmail.com` | Inválido | Dois pontos consecutivos |
+| `maria@-gmail.com` | Inválido | Hífen no início de uma parte do domínio |
+| `maria@gmail-.com` | Inválido | Hífen no final de uma parte do domínio |
+| `maria.silva@gmail.com` | Válido | Atende a todas as regras |
+| `contato+curso@exemplo.com.br` | Válido | O símbolo `+` é permitido no usuário |
+
+---
+
+## 6. Relação com Linguagens Formais e Autômatos
+
+Uma expressão regular representa uma **linguagem regular**.
+
+Neste exercício, a linguagem é formada pelo conjunto de todas as cadeias que possuem o formato de e-mail definido pela expressão regular.
+
+Podemos representar de forma simplificada:
+
+```text
+E-MAIL = USUÁRIO · @ · DOMÍNIO · . · EXTENSÃO
+```
+
+Por exemplo:
+
+```text
+maria@gmail.com
+```
+
+pertence à linguagem definida pela Regex, pois satisfaz todas as regras.
+
+Já:
+
+```text
+pedro.gmail.com
+```
+
+não pertence à linguagem, porque não possui o símbolo obrigatório `@`.
+
+Da mesma forma:
+
+```text
+ana@dominio
+```
+
+não pertence à linguagem, pois não possui uma extensão.
+
+A expressão regular funciona como uma regra de reconhecimento.
+
+Para cada cadeia fornecida ao programa, existem duas possibilidades:
+
+```text
+cadeia ∈ L
+```
+
+quando o endereço é aceito, ou:
+
+```text
+cadeia ∉ L
+```
+
+quando o endereço é rejeitado.
+
+Em Linguagens Formais, uma linguagem descrita por uma expressão regular pode ser reconhecida por um **autômato finito**.
+
+O processo pode ser representado de forma simplificada como:
+
+```text
+Entrada
+   ↓
+USUÁRIO
+   ↓
+  @
+   ↓
+DOMÍNIO
+   ↓
+  .
+   ↓
+EXTENSÃO
+   ↓
+ACEITA
+```
+
+Caso algum símbolo ou sequência não satisfaça as regras durante o reconhecimento, a cadeia é rejeitada.
+
+---
+
+## 7. Conclusão
+
+A atividade demonstra como expressões regulares podem ser utilizadas para representar e reconhecer padrões pertencentes a uma linguagem formal.
+
+O programa desenvolvido recebe cinco endereços, utiliza a expressão regular para classificá-los e apresenta separadamente os endereços válidos e inválidos.
+
+Também foi implementada uma função específica para explicar o motivo da rejeição dos endereços inválidos.
+
+Além das regras básicas, a expressão regular foi aprimorada para impedir ponto no início do usuário, ponto antes de `@`, pontos consecutivos e hífens posicionados incorretamente no domínio.
+
+Apesar dessas verificações, a validação continua sendo apenas sintática. Um endereço que possui formato válido não necessariamente existe ou possui uma caixa de entrada ativa.
